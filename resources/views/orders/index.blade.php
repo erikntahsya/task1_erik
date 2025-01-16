@@ -149,7 +149,6 @@
         .card-header:hover {
             background-color: #5a4db0;
         }
-        /* Additional Styles */
         .card-header {
             background: linear-gradient(45deg, #6c5ce7, #5a4db0);
         }
@@ -176,8 +175,6 @@
             padding: 5px;
             border-radius: 5px;
         }
-
-        /* Hover Animations */
         .btn-custom, .btn-delete {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
         }
@@ -263,7 +260,7 @@
 </head>
 <body>
 
-<!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6c5ce7;">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -342,7 +339,7 @@
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer>
     <p>&copy; 2025 Order Management System. All rights reserved.</p>
 </footer>
@@ -370,13 +367,13 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Kirim form penghapusan jika dikonfirmasi
+                
                 document.getElementById('deleteForm-' + orderId).submit();
             }
         });
     }
 
-    // Event listener untuk membuka dan menutup sidebar
+    
     document.getElementById('openSidebar').addEventListener('click', function() {
         document.getElementById('sidebar').classList.add('open');
     });

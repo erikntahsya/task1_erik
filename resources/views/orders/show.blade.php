@@ -191,7 +191,7 @@
 </head>
 <body>
 
-<!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #6c5ce7; z-index: auto">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -222,7 +222,7 @@
 <button id="openSidebar" class="btn-open">☰</button>
 
 <div class="container">
-    <!-- Tombol Back -->
+    
     <a href="{{ route('orders.index', $order) }}" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali</a>
 
     <h2>Detail Order</h2>
@@ -286,7 +286,7 @@
     </form>
 </div>
 
-<!-- Footer -->
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
@@ -297,18 +297,18 @@
     $(document).ready(function() {
         $('#itemsTable').DataTable();
 
-        // Event listener untuk tombol buka sidebar
+       
         document.getElementById('openSidebar').addEventListener('click', function() {
             document.getElementById('sidebar').classList.add('open');
         });
 
-        // Event listener untuk tombol tutup sidebar
+       
         document.getElementById('closeSidebar').addEventListener('click', function() {
             document.getElementById('sidebar').classList.remove('open');
         });
     });
 
-    // SweetAlert2 Confirmation for Deleting
+    
     function confirmDelete(itemId) {
         Swal.fire({
             title: 'Apakah Anda yakin?',
@@ -321,7 +321,7 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Perform form submission if confirmed
+               
                 document.getElementById('deleteForm-' + itemId).submit();
             }
         });

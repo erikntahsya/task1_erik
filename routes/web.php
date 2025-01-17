@@ -20,4 +20,7 @@ Route::get('/', function () {
 });
 Route::resource('orders', OrderController::class);
 Route::resource('order-items', OrderItemController::class);
+Route::delete('order-items/{orderItem}', [OrderItemController::class, 'destroy'])->name('order-items.destroy');
+
+
 

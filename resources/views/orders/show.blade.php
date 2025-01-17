@@ -250,11 +250,16 @@
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->subtotal }}</td>
                     <td>
-                        <a href="{{ route('order-items.edit', $item) }}" class="btn-custom"><i class="fas fa-edit"></i> Edit</a>                        <form action="{{ route('order-items.destroy', $order) }}" method="POST" class="d-inline" id="deleteForm-{{ $item->id }}">
+                        <a href="{{ route('order-items.edit', $item) }}" class="btn-custom"><i class="fas fa-edit"></i> Edit</a>                       
+                        @foreach ($order->items as $item)
+                        <form action="{{ route('order-items.destroy', $item->id) }}" method="POST" class="d-inline" id="deleteForm-{{ $item->id }}">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="btn-delete" onclick="confirmDelete({{ $item->id }})"><i class="fas fa-trash"></i> Delete</button>
+                            <button type="button" class="btn-delete" onclick="confirmDelete({{ $item->id }})">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
                         </form>
+                    @endforeach                    
                     </td>
                 </tr>
                 @endforeach

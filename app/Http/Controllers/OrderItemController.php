@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Order;
@@ -8,6 +7,7 @@ use Illuminate\Http\Request;
 
 class OrderItemController extends Controller
 {
+    // Menyimpan order item baru
     public function store(Request $request)
     {
         $request->validate([
@@ -27,6 +27,7 @@ class OrderItemController extends Controller
             'subtotal' => $subtotal,
         ]);
 
+        // Update total harga order
         $order = $orderItem->order;
         $order->total_amount = $order->items->sum('subtotal');
         $order->save();
@@ -34,12 +35,18 @@ class OrderItemController extends Controller
         return redirect()->route('orders.show', $order)->with('success', 'Item berhasil ditambahkan.');
     }
 
-    public function edit(OrderItem $orderItem)
-    {
-        $order = $orderItem->order;
-        return view('order-items.edit', compact('orderItem', 'order'));
-    }
+    // Mengupdate order item
+    // Mengupdate order item
+public function edit(OrderItem $orderItem)
+{
+    // Get the order related to the order item
+    $order = $orderItem->order;  // This will automatically load the related order
+    
+    return view('order-items.edit', compact('orderItem', 'order'));
+}
 
+
+    // Menyimpan perubahan OrderItem
     public function update(Request $request, OrderItem $orderItem)
     {
         $request->validate([
@@ -55,6 +62,7 @@ class OrderItemController extends Controller
             'subtotal' => $request->quantity * $request->price,
         ]);
 
+        // Update total harga order
         $order = $orderItem->order;
         $order->total_amount = $order->items->sum('subtotal');
         $order->save();
@@ -62,14 +70,17 @@ class OrderItemController extends Controller
         return redirect()->route('orders.show', $order)->with('success', 'Item berhasil diupdate.');
     }
 
+    // Menghapus order item
     public function destroy(OrderItem $orderItem)
-    {
-        $orderItem->delete();
+{
+    $order = $orderItem->order; // Ambil order terkait
+    $orderItem->delete(); // Hapus item
 
-        $order = $orderItem->order;
-        $order->total_amount = $order->items->sum('subtotal');
-        $order->save();
+    // Update total harga order
+    $order->total_amount = $order->items->sum('subtotal');
+    $order->save();
 
-        return redirect()->route('orders.show', $order)->with('success', 'Item berhasil dihapus.');
-    }
+    return redirect()->route('orders.show', $order)->with('success', 'Item berhasil dihapus.');
+}
+
 }
